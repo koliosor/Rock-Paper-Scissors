@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+let gameFinished = false;
+
 function getComputersChoice() {
   let rand = Math.floor(Math.random() * 3);
   let computersChoice;
@@ -10,7 +14,6 @@ function getComputersChoice() {
   }
   return computersChoice;
 }
-console.log(getComputersChoice());
 
 function playRound(computersChoice, playerSelection) {
   playerSelection.toLowerCase();
@@ -18,31 +21,43 @@ function playRound(computersChoice, playerSelection) {
     if (computersChoice === "rock") {
       return `Player selected ${playerSelection} and computer ${computersChoice} its a tie`;
     } else if (computersChoice === "scissors") {
+      playerScore++;
       return `Player selected ${playerSelection} and computer ${computersChoice} player wins`;
     } else if (computersChoice === "paper") {
+      computerScore++;
       return `Player selected ${playerSelection} and computer ${computersChoice} computer wins`;
     }
   } else if (playerSelection === "scissors") {
     if (computersChoice === "scissors") {
       return `Player selected ${playerSelection} and computer ${computersChoice} its a tie`;
     } else if (computersChoice === "rock") {
-      return `Player selected ${playerSelection} and computer ${computersChoice} player wins`;
-    } else if (computersChoice === "paper") {
+      computerScore++;
       return `Player selected ${playerSelection} and computer ${computersChoice} computer wins`;
+    } else if (computersChoice === "paper") {
+      playerScore++;
+      return `Player selected ${playerSelection} and computer ${computersChoice} player wins`;
     }
   } else {
     if (computersChoice === "paper") {
       return `Player selected ${playerSelection} and computer ${computersChoice} its a tie`;
     } else if (computersChoice === "rock") {
+      playerScore++;
       return `Player selected ${playerSelection} and computer ${computersChoice} player wins`;
     } else if (computersChoice === "scissors") {
+      computerScore++;
       return `Player selected ${playerSelection} and computer ${computersChoice} computer wins`;
     }
   }
 }
-console.log(playRound(getComputersChoice(), "scissors"));
-// function game(){
-//     for (let i=0; i<5; i++){
+// console.log(playRound(getComputersChoice(), "scissors"));
 
-//     }
-// }
+while (computerScore < 4 && playerScore < 4) {
+  console.log(playRound(getComputersChoice(), "scissors"));
+  if (playerScore == 4) {
+    console.log("Player wins");
+    gameFinished = true;
+  } else {
+    console.log("Computer wins");
+    gameFinished = true;
+  }
+}
