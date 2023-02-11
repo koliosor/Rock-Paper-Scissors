@@ -49,15 +49,31 @@ function playRound(computersChoice, playerSelection) {
     }
   }
 }
-// console.log(playRound(getComputersChoice(), "scissors"));
 
-while (computerScore < 4 && playerScore < 4) {
-  console.log(playRound(getComputersChoice(), "scissors"));
+function getPlayersChoice(ask) {
+  ask = prompt("Choose Rock , Paper or Scissors");
+  ask.toLowerCase();
+  while (ask !== "rock" && ask !== "scissors" && ask !== "paper") {
+    ask = prompt("Choose Rock , Paper or Scissors");
+    ask.toLowerCase();
+  }
+  return ask;
+}
+
+function playGame() {
+  while (computerScore < 4 && playerScore < 4) {
+    playRound(getComputersChoice(), getPlayersChoice());
+    // console.log(playRound(getComputersChoice(), "scissors"));
+  }
   if (playerScore == 4) {
     console.log("Player wins");
     gameFinished = true;
+    return;
   } else {
     console.log("Computer wins");
     gameFinished = true;
+    return;
   }
 }
+
+playGame();
