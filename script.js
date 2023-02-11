@@ -7,7 +7,7 @@ const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
 const start = document.querySelector(".start");
 
-function getComputersChoice() {
+const getComputersChoice = () => {
   let rand = Math.floor(Math.random() * 3);
   let computersChoice;
   if (rand === 0) {
@@ -18,9 +18,9 @@ function getComputersChoice() {
     computersChoice = "paper";
   }
   return computersChoice;
-}
+};
 
-function playRound(computersChoice, playerSelection) {
+const playRound = (computersChoice, playerSelection) => {
   if (playerSelection === "rock") {
     if (computersChoice === "rock") {
       return `Player selected ${playerSelection} and computer ${computersChoice} its a tie`;
@@ -52,42 +52,34 @@ function playRound(computersChoice, playerSelection) {
       return `Player selected ${playerSelection} and computer ${computersChoice} computer wins`;
     }
   }
-}
+};
 
-// function getPlayersChoice(ask) {
-//   ask = prompt("Choose Rock , Paper or Scissors");
-//   ask.toLowerCase();
-//   while (ask !== "rock" && ask !== "scissors" && ask !== "paper") {
-//     ask = prompt("Choose Rock , Paper or Scissors");
-//     ask.toLowerCase();
+// rock.addEventListener("click", function playGame() {
+//   console.log(playRound(getComputersChoice(), "rock"));
+
+//   if (playerScore == 4 || computerScore == 4) {
+//     if (playerScore == 4) {
+//       console.log("Player Won The Game");
+//       gameFinished = true;
+//       playerScore = 0;
+//       computerScore = 0;
+//       return;
+//     } else {
+//       console.log("Computer Won The Game");
+//       gameFinished = true;
+//       playerScore = 0;
+//       computerScore = 0;
+//       return;
+//     }
 //   }
-//   return ask;
-// }
+// });
 
-rock.addEventListener("click", function () {
-  return (choice = "rock");
-});
-paper.addEventListener("click", function () {
-  return (choice = "paper");
-});
-scissors.addEventListener("click", function () {
-  return (choice = "scissors");
+buttons.forEach((button) => {
+  button.addEventListener("click", handleclick);
 });
 
-function playGame() {
-  while (computerScore < 4 && playerScore < 4) {
-    playRound(getComputersChoice(), getPlayersChoice());
-    // console.log(playRound(getComputersChoice(), "scissors"));
-  }
-  if (playerScore == 4) {
-    console.log("Player wins");
-    gameFinished = true;
-    return;
-  } else {
-    console.log("Computer wins");
-    gameFinished = true;
-    return;
-  }
+function handleclick(e) {
+  const choice = e.target.classList[0];
+
+  console.log(playRound(getComputersChoice(), choice));
 }
-
-start.addEventListener("click", playGame());
