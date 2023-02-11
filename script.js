@@ -1,6 +1,11 @@
 let playerScore = 0;
 let computerScore = 0;
 let gameFinished = false;
+const buttons = document.querySelectorAll(".wrap button");
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const start = document.querySelector(".start");
 
 function getComputersChoice() {
   let rand = Math.floor(Math.random() * 3);
@@ -16,7 +21,6 @@ function getComputersChoice() {
 }
 
 function playRound(computersChoice, playerSelection) {
-  playerSelection.toLowerCase();
   if (playerSelection === "rock") {
     if (computersChoice === "rock") {
       return `Player selected ${playerSelection} and computer ${computersChoice} its a tie`;
@@ -50,15 +54,25 @@ function playRound(computersChoice, playerSelection) {
   }
 }
 
-function getPlayersChoice(ask) {
-  ask = prompt("Choose Rock , Paper or Scissors");
-  ask.toLowerCase();
-  while (ask !== "rock" && ask !== "scissors" && ask !== "paper") {
-    ask = prompt("Choose Rock , Paper or Scissors");
-    ask.toLowerCase();
-  }
-  return ask;
-}
+// function getPlayersChoice(ask) {
+//   ask = prompt("Choose Rock , Paper or Scissors");
+//   ask.toLowerCase();
+//   while (ask !== "rock" && ask !== "scissors" && ask !== "paper") {
+//     ask = prompt("Choose Rock , Paper or Scissors");
+//     ask.toLowerCase();
+//   }
+//   return ask;
+// }
+
+rock.addEventListener("click", function () {
+  return (choice = "rock");
+});
+paper.addEventListener("click", function () {
+  return (choice = "paper");
+});
+scissors.addEventListener("click", function () {
+  return (choice = "scissors");
+});
 
 function playGame() {
   while (computerScore < 4 && playerScore < 4) {
@@ -76,4 +90,4 @@ function playGame() {
   }
 }
 
-playGame();
+start.addEventListener("click", playGame());
