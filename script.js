@@ -85,7 +85,9 @@ function startGame() {
   if (isGameOver()) {
     return;
   }
-
+  if (livefeed.childNodes.length == 1) {
+    livefeed.removeChild(livefeed.lastChild);
+  }
   paper.addEventListener("click", handleclick);
   rock.addEventListener("click", handleclick);
   scissors.addEventListener("click", handleclick);
@@ -139,7 +141,6 @@ function createHeading() {
 function clearList() {
   // console.log(livefeed.children);
   let paragraph = livefeed.querySelectorAll("p");
-
   for (let i = 0; i <= paragraph.length; i++) {
     livefeed.removeChild(paragraph[i]);
   }
@@ -159,7 +160,7 @@ function displayResult() {
 
   if (playerScore > computerScore) {
     heading.textContent = "Player wins the  Game.";
-  } else if (computerScore < playerScore) {
+  } else if (computerScore > playerScore) {
     heading.textContent = "Computer wins the Game.";
   }
   livefeed.appendChild(heading);
