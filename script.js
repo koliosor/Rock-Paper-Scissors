@@ -1,9 +1,9 @@
 let playerScore = 0;
 let computerScore = 0;
 let tieScore = 0;
-let gameFinished = false;
 const livefeed = document.querySelector(".feed");
-
+const display = document.querySelector(".display");
+const retryButton = document.querySelector("#restart");
 const buttons = document.querySelectorAll(".wrap button");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
@@ -27,91 +27,84 @@ const getComputersChoice = () => {
 const playRound = (computersChoice, playerSelection) => {
   if (playerSelection === "rock") {
     if (computersChoice === "rock") {
-      ++tieScore;
-
-      displayMessage(
-        `Player selected ${playerSelection} and computer ${computersChoice} its a tie.`
-      );
+      tieScore++;
+      displayBoard(`Player chose ✊ computer chose ✊`);
     } else if (computersChoice === "scissors") {
-      ++playerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice}. Player wins the round.`
-      );
+      playerScore++;
+      displayBoard(`Player chose ✊ computer chose ✌`);
     } else if (computersChoice === "paper") {
-      ++computerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice}. Computer wins the round.`
-      );
+      computerScore++;
+      displayBoard(`Player chose ✊ computer chose ✋`);
     }
   } else if (playerSelection === "scissors") {
     if (computersChoice === "scissors") {
       tieScore++;
-      displayMessage(
-        `Player selected ${playerSelection} and computer ${computersChoice} its a tie.`
-      );
+      displayBoard(`Player chose ✌ computer chose ✌`);
     } else if (computersChoice === "rock") {
-      ++computerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice}. Computer wins the round.`
-      );
+      computerScore++;
+      displayBoard(`Player chose ✌ computer chose ✊`);
     } else if (computersChoice === "paper") {
-      ++playerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice}. Player wins the round.`
-      );
+      playerScore++;
+      displayBoard(`Player chose ✌ computer chose ✋ `);
     }
   } else {
     if (computersChoice === "paper") {
       tieScore++;
-      displayMessage(
-        `Player selected ${playerSelection} and computer ${computersChoice} its a tie.`
-      );
+      displayBoard(`Player chose ✋ computer chose ✋ `);
     } else if (computersChoice === "rock") {
-      ++playerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice} Player wins the round`
-      );
+      playerScore++;
+      displayBoard(`Player chose ✋ computer chose ✊`);
     } else if (computersChoice === "scissors") {
-      ++computerScore;
-      displayMessage(
-        `Player selected ${playerSelection}. Computer chose ${computersChoice}. Computer wins the round`
-      );
+      computerScore++;
+      displayBoard(`Player chose ✋ computer chose ✌`);
     }
   }
+  updateScore();
 };
+
+function updateScore() {
+  const playerHtmlScore = document.querySelector(".player-score");
+  const computerHtmlScore = document.querySelector(".computer-score");
+  playerHtmlScore.innerHTML = `Player Score:  ${playerScore}`;
+  computerHtmlScore.innerHTML = `Computer Score: ${computerScore}`;
+}
 
 start.addEventListener("click", startGame);
 function startGame() {
   if (isGameOver()) {
+    stopGame();
+
     return;
   }
-  if (livefeed.childNodes.length == 1) {
-    livefeed.removeChild(livefeed.lastChild);
-  }
+
+  // clearList();
+
   paper.addEventListener("click", handleclick);
   rock.addEventListener("click", handleclick);
   scissors.addEventListener("click", handleclick);
-  reset.addEventListener("click", resetGame);
+  retryButton.addEventListener("click", restart);
 }
 
+function restart() {
+  playerScore = 0;
+  computerScore = 0;
+  tieScore = 0;
+  updateScore();
+  clearList();
+}
 function handleclick(e) {
   const choice = e.target.id;
   // console.log(e.target.textContent);
   if (isGameOver()) {
+    stopGame();
     displayResult();
-    resetGame();
-    clearList();
   }
   playRound(getComputersChoice(), choice);
 }
 
 function isGameOver() {
-  return playerScore === 4 || computerScore === 4;
+  return playerScore >= 5 || computerScore >= 5;
 }
-
-// buttons.forEach((button) => {
-//    button.addEventListener("click", handleclick);
-//  });
 
 function displayMessage(str) {
   livefeed.animate([{ opacity: 0 }, { opacity: 1 }], {
@@ -121,10 +114,10 @@ function displayMessage(str) {
     delay: 1,
     easing: "ease-out",
   });
-  const paragraph = createParagraph();
-  paragraph.textContent = str;
+}
 
-  livefeed.appendChild(paragraph);
+function displayBoard(str) {
+  display.innerHTML = str;
 }
 
 function createParagraph() {
@@ -139,17 +132,17 @@ function createHeading() {
 }
 
 function clearList() {
-  // console.log(livefeed.children);
-  let paragraph = livefeed.querySelectorAll("p");
-  for (let i = 0; i <= paragraph.length; i++) {
-    livefeed.removeChild(paragraph[i]);
-  }
+  display.innerHTML = "";
+  livefeed.innerHTML = "";
 }
 
-function resetGame() {
+function resetScore() {
   playerScore = 0;
   computerScore = 0;
   tieScore = 0;
+}
+
+function stopGame() {
   paper.removeEventListener("click", handleclick);
   rock.removeEventListener("click", handleclick);
   scissors.removeEventListener("click", handleclick);
@@ -163,5 +156,6 @@ function displayResult() {
   } else if (computerScore > playerScore) {
     heading.textContent = "Computer wins the Game.";
   }
+  console.log(heading);
   livefeed.appendChild(heading);
 }
