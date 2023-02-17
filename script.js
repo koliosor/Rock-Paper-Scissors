@@ -5,9 +5,9 @@ let gameFinished = false;
 const livefeed = document.querySelector(".feed");
 
 const buttons = document.querySelectorAll(".wrap button");
-const rock = document.querySelector(".rock");
-const paper = document.querySelector(".paper");
-const scissors = document.querySelector(".scissors");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
 const start = document.querySelector("#start");
 const reset = document.querySelector("#reset");
 
@@ -95,7 +95,7 @@ function startGame() {
 }
 
 function handleclick(e) {
-  const choice = e.target.classList[0];
+  const choice = e.target.id;
   // console.log(e.target.textContent);
   if (isGameOver()) {
     displayResult();

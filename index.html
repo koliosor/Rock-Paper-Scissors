@@ -8,17 +8,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<div class="container">
-<div >
-    <img class="rock" src="images/hand-rock-grey.svg" style="width:60px; height:60px;">
+    <div class="score-wrap">
+<h2>First to score 5 points wins</h2>
+<div class="scoreboards">
+    <div class="playerscore"></div>
+    <div class="computerscore"></div>
 </div>
-<div>
-    <img class="paper" src="images/hand-paper-grey.svg" style="width:60px; height:60px;">
-</div>
-<div>
-    <img class="scissors" src="images/hand-scissors-grey.svg" style="width:60px; height:60px;">
-</div>
+    </div>
+<div class="signs-wrap">
+<button class="myButton">
+    <div class="sign" id="rock" >
+        ✊
+    </div>
+</button >
+<button class="myButton">
+    <div class="sign" id="paper">
+        ✋
+    </div>
+</button>
+<button class="myButton">
+    <div class="sign" id="scissors">
+        ✌
+    </div>
+</button>
 </div>
 <div class="button-wrap">
     <button class="myButton" id="start">START</button>
