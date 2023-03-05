@@ -13,9 +13,26 @@ body{
     height: 100%;
     font-family: 'Montserrat', sans-serif;
     display:flex;
+    justify-content: flex-start;
     flex-direction: column;
-    justify-content: center;
-    
+    align-items: center;
+    background-image: url("images/back2.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px solid;
+    resize: both;
+    overflow: hidden
+  }
+  
+
+
+
+.heading{
+width:100%;
+text-align: center;
+margin-bottom:1rem;
+color:#fff;
+display:none;
 }
 .score-wrap{
     display:flex;
@@ -26,19 +43,25 @@ body{
 }
 
 .scoreboards{
-    width:50%;
-   max-width:50%;
+    width:100%;
     display:flex;
     justify-content: space-between;
-    margin-top:2rem;
+    font-size:1.4rem;
+    color:#93512f;
+    padding:1rem 2rem;
+    border-radius:20px;
+    background-color: #120638;
+
     
 }
 
 .signs-wrap {
      /* height: 100%; */
-    width:100%; 
     display:flex;
-justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+margin:0 auto;
 
 }
 
@@ -48,8 +71,18 @@ justify-content: center;
 
 .sign {
     font-size:80px;
-    margin:0;
-    padding:2rem 1rem;
+    margin:0 1rem;
+    padding:3rem 3rem;
+    /* background-color: #8a38f6a2; */
+    /* background-color: #120638; */
+
+    border-radius: 0.5rem;
+    border:1px solid #F9FAF8;
+    color:#F9FAF8;
+    font-weight: bold;
+    cursor:pointer;
+    transition:    transform  padding 0.5s;
+    
 
 }
 
@@ -63,7 +96,8 @@ margin:3rem 0;
 
 .myButton {
  
-        background-color: #3882F6;
+        background-color: #120638;
+
         padding:0.5rem 1.4rem;
         border-radius: 0.5rem;
         border:1px solid #F9FAF8;
@@ -81,3 +115,8 @@ margin:3rem 0;
     align-items: center;
 }
 
+@media (max-width:900px){
+.heading{
+    display:block;
+
+}}
