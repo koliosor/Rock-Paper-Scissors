@@ -30,14 +30,14 @@ body{
 .heading{
 width:100%;
 text-align: center;
-margin-bottom:1rem;
+margin-bottom:0.5rem;
 color:#fff;
 display:none;
 }
 .score-wrap{
     display:flex;
     justify-content: center;
-    margin-bottom:3rem;
+    margin-bottom:2rem;
     flex-direction: column;
     align-items: center;
 }
@@ -46,20 +46,17 @@ display:none;
     width:100%;
     display:flex;
     justify-content: space-between;
-    font-size:1.4rem;
+    font-size:1.3rem;
     color:#93512f;
-    padding:1rem 2rem;
+    padding:0.5rem 2rem;
     border-radius:20px;
     background-color: #120638;
-
-    
 }
 
 .signs-wrap {
-     /* height: 100%; */
     display:flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
 margin:0 auto;
 
@@ -71,13 +68,11 @@ margin:0 auto;
 
 .sign {
     font-size:80px;
-    margin:0 1rem;
-    padding:3rem 3rem;
-    /* background-color: #8a38f6a2; */
-    /* background-color: #120638; */
-
+    margin:0.2rem;
+    padding:1.5rem 2rem;
+    user-select: none;
     border-radius: 0.5rem;
-    border:1px solid #F9FAF8;
+    border:3px solid  #120638;
     color:#F9FAF8;
     font-weight: bold;
     cursor:pointer;
@@ -90,33 +85,49 @@ margin:0 auto;
 
 display:flex;
 justify-content: center;
-margin:3rem 0;
+margin:1rem 0;
 
 }
 
 .myButton {
- 
-        background-color: #120638;
-
-        padding:0.5rem 1.4rem;
-        border-radius: 0.5rem;
-        border:1px solid #F9FAF8;
-        color:#F9FAF8;
-        font-weight: bold;
-        font-size:1.1rem;
-        cursor:pointer;
-        transition:    transform  padding 0.5s;
+background-color: #120638;
+padding:0.5rem 1.4rem;
+border-radius: 0.5rem;
+border:1px solid #F9FAF8;
+color:#F9FAF8;
+font-weight: bold;
+font-size:1.1rem;
+cursor:pointer;
+transition:    transform  padding 0.5s;
         
-        }
+}
         
 .feed{
     display:flex;
     flex-direction: column;
     align-items: center;
+    color:#fff
 }
 
 @media (max-width:900px){
 .heading{
     display:block;
 
-}}
+}
+
+
+.signs-wrap {
+ flex-direction: column;
+}
+.sign{
+font-size:40px;
+margin-bottom:0.5rem;
+}
+.scoreboards{
+    padding:0.5rem 1rem;
+    font-size:1rem;
+ 
+}
+
+
+}
